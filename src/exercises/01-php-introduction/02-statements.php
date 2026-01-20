@@ -98,8 +98,13 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-
+        $X = rand(1,10);
         
+        for ($i = 0; $i <= 10; $i++) {
+            $Z = $X * $i;
+            echo "<p>$X x $i = $Z</p>";
+        }
+
         ?>
     </div>
 

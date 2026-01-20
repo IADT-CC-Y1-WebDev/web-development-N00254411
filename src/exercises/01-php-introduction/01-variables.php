@@ -29,8 +29,10 @@
         // TODO: Write your solution here
         $firstName = "Victoria";
         $lastName = "Connolly";
+        $age = "18";
+        $city = "Arklow";
 
-        echo "My name is $firstName $lastName";
+        echo "My name is $firstName $lastName, i am $age years old and i live in $city";
         ?>
     </div>
 
@@ -48,6 +50,21 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $price1 = 8.70;
+        $price2 = 4.40;
+        $price3 = 5.90;
+        $quantity1 = 4;
+        $quantity2 = 2;
+        $quantity3 = 6;
+        $discount = 0.9;
+        
+        $totalprice1 = $price1*$quantity1;
+        $totalprice2 = $price2*$quantity2;
+        $totalprice3 = $price3*$quantity3;
+
+        $finalCost = ($totalprice1+$totalprice2+$totalprice3)*$discount;
+        
+        echo "The final cost is $finalCost";
         ?>
     </div>
 

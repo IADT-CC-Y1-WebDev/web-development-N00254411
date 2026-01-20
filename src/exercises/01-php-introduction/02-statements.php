@@ -120,6 +120,9 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $number =(10);
+         while($number >= 0)
+            
         ?>
     </div>
 

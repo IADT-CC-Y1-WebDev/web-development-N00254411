@@ -56,7 +56,33 @@
         <?php
         // TODO: Write your solution here
 
+        $weekDays = rand(1,7);
+        switch($weekDays){
+            case 1: 
+                echo "Today is Monday, it is a weekday!";
+                break;
+            case 2:
+                echo "Today is Tuesday,  is it a weekday!";
+                break;
+            case 3: 
+                echo "Today is Wednesday , it is a weekday!";
+                break;
+            case 4:
+                echo "Today is Thursday, it is a weekday!";
+                break;
+            case 5: 
+                echo "Today is Friday, it is a weekday!";
+                break;
+            case 6: 
+                echo "Today is Saturday, it is the weekend!!";
+                break;
+            case 7: 
+                echo "Today is Sunday, It is the weekend!!";
+                break;
+        }
+
         
+
         ?>
     </div>
 
@@ -72,6 +98,8 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        
         ?>
     </div>
 

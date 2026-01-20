@@ -27,6 +27,18 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $age = 50;
+        
+        if ($age < 13 ){
+            echo "Child";
+        } else if ($age < 21 && $age >12){
+            echo "Teenager";
+        } else if ($age < 65 && $age >20){
+            echo "Adult";
+        } else if ($age >= 65){
+            echo "Senior ";
+        }
+            
         ?>
     </div>
 
@@ -43,6 +55,8 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        
         ?>
     </div>
 

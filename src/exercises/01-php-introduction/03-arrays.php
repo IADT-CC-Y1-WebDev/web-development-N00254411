@@ -27,6 +27,17 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $movies = [
+            "Halloween Town",
+            "The Simpsons Movie",
+            "My little pony",
+            "Moshi Monster movie",
+            "Wreck it Ralph"
+        ];
+        
+        for ($i = 0; $i != count($movies);$i++){
+            echo "Movie " . ($i+1) . ": " . $movies[$i] . "<br/>";
+        }
         ?>
     </div>
 
@@ -42,6 +53,7 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
         ?>
     </div>
 

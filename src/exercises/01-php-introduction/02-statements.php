@@ -120,8 +120,14 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        $number =(10);
-         while($number >= 0)
+        $number = 10;
+
+         while($number > 0){
+            echo"<p>$number</p>";
+            $number = $number - 1;
+         }
+         echo "Blast off!!!";
+            
             
         ?>
     </div>

@@ -79,6 +79,16 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $countries = [
+            "Ireland" => "Dublin",
+            "Poland" => "Warsaw",
+            "Sweden" => "stockholm",
+            "Philippines"=> "Manila",
+            "Thailand"=> "Bangkok"
+        ];
+        foreach ($countries as $country => $capital ) {
+            echo "<p>The capital of $country is $capital</p>";
+        }
         ?>
     </div>
 
@@ -96,6 +106,26 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $Courses = [
+            'starter course' => [
+                'Tomato soup' => 6.00,
+                'Garlic Bread'=> 6.50,
+                'Clam soup'=> 7.00
+            ],
+            'Main course' => [
+                'Lamb Legs and Potato' => 12.50,
+                'Chicken curry and Rice' => 13.00,
+                'Pork chops and potato' => 13.50,
+            ]
+        ];
+       foreach ($Courses as $course => $food) {
+    echo "<p>" . ucfirst($course) . " products:</p>";
+    echo "<ul>";
+    foreach ($food as $key => $price) {
+        echo "<li>$key\t($price)</li>";
+    }
+    echo "</ul>";
+}
         ?>
     </div>
 

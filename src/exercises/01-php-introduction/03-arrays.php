@@ -53,7 +53,15 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $student = [
+            "name" => "Leoandro Dicaprio",
+            "studentId" => "0927854",
+            "course" => "film",
+            "grade"=> "3rd year"
+        ];
 
+        $text = 
+        "The students name is {$student['title']"
         ?>
     </div>
 

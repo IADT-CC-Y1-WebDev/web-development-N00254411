@@ -61,7 +61,8 @@
         ];
 
         $text = 
-        "The students name is {$student['title']"
+        "The students name is {$student['name']} and their student id is {$student['studentId']}, theyre in the course {$student['course']}, it is their {$student['grade']}";
+        print("<p>$text</p>");
         ?>
     </div>
 

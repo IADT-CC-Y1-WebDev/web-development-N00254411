@@ -11,14 +11,16 @@ require_once './etc/config.php';
 // Exercise 1: Start the session
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
-
+if (session_status()=== PHP_SESSION_NONE){
+    session_start();
+};
 // =============================================================================
 
 // =============================================================================
 // Exercise 2: Initialize the cart
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
-
+ $cart = ShoppingCart::getInstance();
 // =============================================================================
 
 // =============================================================================
@@ -29,6 +31,15 @@ require_once './etc/config.php';
 // 3. Redirect back to cart.php
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
+if (isset($_GET['remove'])){
+    $id = (int) $_GET['add'];
+    $product = Product::findById($id);
+    if ($product !== null){
+        $cart ->remove($id);
+    }
+    header("Location: cart.php");
+    exit();
+}
 
 // =============================================================================
 

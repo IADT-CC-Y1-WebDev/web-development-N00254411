@@ -11,7 +11,9 @@ require_once 'etc/config.php';
 // Exercise 1: Start the session
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
-
+if (session_status()=== PHP_SESSION_NONE){
+    session_start();
+};
 // =============================================================================
 
 // Create products (they auto-register via the Registry pattern)
@@ -24,7 +26,7 @@ new Product(4, 'Hat', 14.99, 'Baseball cap');
 // Exercise 2: Initialize the cart
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
- 
+ $cart = ShoppingCart::getInstance();
 // =============================================================================
 
 // =============================================================================
@@ -36,7 +38,15 @@ new Product(4, 'Hat', 14.99, 'Baseball cap');
 // 4. Redirect back to products.php
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
-
+if (isset($_GET['add'])){
+    $id = (int) $_GET['add'];
+    $product = Product::findById($id);
+    if ($product !== null){
+        $cart ->add($product);
+    }
+    header("Location: products.php");
+    exit();
+}
 // =============================================================================
 
 // Calculate cart count (this is provided for you)

@@ -34,9 +34,8 @@ if (session_status()=== PHP_SESSION_NONE){
 if (isset($_GET['remove'])){
     $id = (int) $_GET['add'];
     $product = Product::findById($id);
-    if ($product !== null){
         $cart ->remove($id);
-    }
+    
     header("Location: cart.php");
     exit();
 }

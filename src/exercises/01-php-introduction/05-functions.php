@@ -49,9 +49,9 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        function calulateRectangleArea($width){
-            echo ();
-        }
+        // function calulateRectangleArea($width){
+        //     echo ();
+        // }
         ?>
     </div>
 
@@ -68,6 +68,13 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        function checkEvenOdd($number){
+            if ($number % 2 == 1){
+                echo "odd"
+            } else {
+                echo "even"
+            }
+        }
         ?>
     </div>
 
@@ -84,6 +91,11 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        function($getArratStatus){
+            
+        }
+
         ?>
     </div>
 

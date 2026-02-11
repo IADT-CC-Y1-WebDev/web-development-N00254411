@@ -35,6 +35,8 @@
         // Step 2: Require the file
         // require_once __DIR__ . '/classes/Student.php';
         // Step 3: Create a student and display their details
+
+        
         ?>
     </div>
 

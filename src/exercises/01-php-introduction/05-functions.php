@@ -49,9 +49,13 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // function calulateRectangleArea($width){
-        //     echo ();
-        // }
+        function calculateRectangleArea($width, $height = 50){
+            if ($height === 50) {
+                $height = $width; 
+            }
+            $area = $width * $height;
+            echo "$area";
+        };
         ?>
     </div>
 
@@ -70,11 +74,11 @@
         // TODO: Write your solution here
         function checkEvenOdd($number){
             if ($number % 2 == 1){
-                echo "odd"
+                echo "odd";
             } else {
-                echo "even"
+                echo "even";
             }
-        }
+        };
         ?>
     </div>
 
@@ -92,9 +96,12 @@
         <?php
         // TODO: Write your solution here
 
-        function($getArratStatus){
-            
-        }
+        function getArrayStats($numbers) {
+            $min = min($numbers);
+            $max = max($numbers);
+            $average = array_sum($numbers) / count($numbers);
+            return [$min, $max, $average];
+        }   
 
         ?>
     </div>

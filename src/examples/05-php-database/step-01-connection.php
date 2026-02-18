@@ -51,7 +51,7 @@ try {
             <?php
             // Database credentials
             $host = 'mysql-container';
-            $dbname = 'testdb';
+            $dbname = 'games_db';
             $username = 'testuser';
             $password = 'mysecret';
 

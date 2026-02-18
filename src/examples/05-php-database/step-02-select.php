@@ -46,6 +46,9 @@ foreach ($games as $game) {
             $games = $stmt->fetchAll();
 
             echo "<p>Found " . count($games) . " games</p>";
+            // echo "<pre>";
+            // print_r($games);
+            // echo "</pre>";
             foreach ($games as $game) {
                 echo "<p>" . htmlspecialchars($game['title']) . " (" . $game['release_date'] . ")</p>";
             }

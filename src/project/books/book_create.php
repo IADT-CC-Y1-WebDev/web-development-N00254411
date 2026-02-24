@@ -7,12 +7,12 @@ require_once 'php/lib/utils.php';
 startSession();
 
 try {
-    $format_ids = Book::findAll();
-    $platforms = Platform::findAll();
+    $book = Book::findAll();
+    
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
-    redirect('/index.php');
+    redirect('/book_list.php');
 }
 ?>
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ catch (PDOException $e) {
                 <h1>Create Book</h1>
             </div>
             <div class="width-12">
-                <form action="game_store.php" method="POST" enctype="multipart/form-data">
+                <form action="book_store.php" method="POST" enctype="multipart/form-data">
                     <div class="input">
                         <label class="special" for="title">Title:</label>
                         <div>
@@ -45,7 +45,7 @@ catch (PDOException $e) {
                             <p><?= error('year') ?></p>
                         </div>
                     </div>
-                    <div class="input">
+                    <!-- <div class="input">
                         <label class="special" for="format_ids">Genre:</label>
                         <div>
                             <select id="format_ids" name="format_ids" required>
@@ -57,7 +57,7 @@ catch (PDOException $e) {
                             </select>
                             <p><?= error('format_ids') ?></p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="input">
                         <label class="special" for="description">Description:</label>
                         <div>
@@ -91,7 +91,7 @@ catch (PDOException $e) {
                     </div>
                     <div class="input">
                         <button  class="button" type="submit">Store Book</button>
-                        <div class="button"><a href="index.php">Cancel</a></div>
+                        <div class="button"><a href="book_list.php">Cancel</a></div>
                     </div>
                 </form>
             </div>

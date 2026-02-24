@@ -13,7 +13,7 @@ try {
         die("<p>Error: Book not found.</p>");
     }
 
-    $format_ids = Book::findById($book->format_ids);
+    $year = Book::findById($book->year);
     // $platforms = Platform::findByGame($->id);
 
     // $platformNames = [];

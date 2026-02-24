@@ -6,7 +6,7 @@ class DB {
     private $connection;
 
     private $host = 'mysql-container';
-    private $dbname = 'testsdb';
+    private $dbname = 'testdb';
     private $username = 'testuser';
     private $password = 'mysecret';
     private $charset = 'utf8mb4';

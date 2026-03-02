@@ -8,6 +8,9 @@ startSession();
 
 try {
     $book = Book::findAll();
+    $publisher_ids = Publisher::findAll();
+    $format_ids = Format::findAll();
+
     
 }
 catch (PDOException $e) {
@@ -45,19 +48,19 @@ catch (PDOException $e) {
                             <p><?= error('year') ?></p>
                         </div>
                     </div>
-                    <!-- <div class="input">
-                        <label class="special" for="format_ids">Genre:</label>
+                 <div class="input">
+                        <label class="special" for="publisher_ids">Publisher:</label>
                         <div>
-                            <select id="format_ids" name="format_ids" required>
-                                <?php foreach ($format_ids as $format_ids) { ?>
-                                    <option value="<?= h($format_ids->id) ?>" <?= chosen('format_ids', $format_ids->id) ? "selected" : "" ?>>
-                                        <?= h($format_ids->name) ?>
+                            <select id="publisher_ids" name="publisher_id" required>
+                                <?php foreach ($publisher_ids as $publisher_id) { ?>
+                                    <option value="<?= h($publisher_id->id) ?>" <?= chosen('publisher_id', $publisher_id->id) ? "selected" : "" ?>>
+                                        <?= h($publisher_id->name) ?>
                                     </option>
                                 <?php } ?>
                             </select>
-                            <p><?= error('format_ids') ?></p>
+                            <p><?= error('publisher_id') ?></p>
                         </div>
-                    </div> -->
+                    </div> 
                     <div class="input">
                         <label class="special" for="description">Description:</label>
                         <div>
@@ -65,23 +68,23 @@ catch (PDOException $e) {
                             <p><?= error('description') ?></p>
                         </div>
                     </div>
-                    <!-- <div class="input">
-                        <label class="special">Platforms:</label>
+                    <div class="input">
+                        <label class="special">Formats:</label>
                         <div>
-                            <?php foreach ($platforms as $platform) { ?>
+                            <?php foreach ($format_ids as $format_id) { ?>
                                 <div>
                                     <input type="checkbox" 
-                                        id="platform_<?= h($platform->id) ?>" 
-                                        name="platform_ids[]" 
-                                        value="<?= h($platform->id) ?>"
-                                        <?= chosen('platform_ids', $platform->id) ? "checked" : "" ?>
+                                        id="format_<?= h($format_id->id) ?>" 
+                                        name="format_ids[]" 
+                                        value="<?= h($format_id->id) ?>"
+                                        <?= chosen('format_ids', $format_id->id) ? "checked" : "" ?>
                                         >
-                                    <label for="platform_<?= h($platform->id) ?>"><?= h($platform->name) ?></label>
+                                    <label for="format_<?= h($format_id->id) ?>"><?= h($format_id->name) ?></label>
                                 </div>
                             <?php } ?>
                         </div>
-                        <p><?= error('platforms_ids') ?></p>
-                    </div> -->
+                        <p><?= error('format_ids') ?></p>
+                    </div>
                     <div class="input">
                         <label class="special" for="image">Image (required):</label>
                         <div>

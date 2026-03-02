@@ -1,6 +1,6 @@
 <?php
 
-class Platform {
+class Format {
     public $id;
     public $name;
     public $manufacturer;
@@ -17,52 +17,52 @@ class Platform {
         }
     }
 
-    // Find all platforms
+    // Find all formats
     public static function findAll() {
         $db = DB::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM platforms ORDER BY name");
+        $stmt = $db->prepare("SELECT * FROM formats ORDER BY name");
         $stmt->execute();
 
-        $platforms = [];
+        $formats = [];
         while ($row = $stmt->fetch()) {
-            $platforms[] = new Platform($row);
+            $formats[] = new Format($row);
         }
 
-        return $platforms;
+        return $formats;
     }
 
-    // Find platform by ID
+    // Find format by ID
     public static function findById($id) {
         $db = DB::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM platforms WHERE id = :id");
+        $stmt = $db->prepare("SELECT * FROM formats WHERE id = :id");
         $stmt->execute(['id' => $id]);
 
         $row = $stmt->fetch();
         if ($row) {
-            return new Platform($row);
+            return new Format($row);
         }
 
         return null;
     }
 
-    // Find platforms by game (requires JOIN with game_platform table)
-    public static function findByGame($gameId) {
+    // Find formats by game (requires JOIN with book_format table)
+    public static function findByGame($bookid) {
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("
-            SELECT p.*
-            FROM platforms p
-            INNER JOIN game_platform gp ON p.id = gp.platform_id
-            WHERE gp.game_id = :game_id
-            ORDER BY p.name
+            SELECT f.*
+            FROM formats f
+            INNER JOIN book_format gp ON f.id = gp._id
+            WHERE gp.book_id = :book_id
+            ORDER BY f.name
         ");
-        $stmt->execute(['game_id' => $gameId]);
+        $stmt->execute(['book_id' => $bookid]);
 
-        $platforms = [];
+        $formats = [];
         while ($row = $stmt->fetch()) {
-            $platforms[] = new Platform($row);
+            $formats[] = new Format($row);
         }
 
-        return $platforms;
+        return $formats;
     }
     
     // Convert to array for JSON output

@@ -20,25 +20,21 @@ try {
     // Get form data
     $data = [
         'title' => $_POST['title'] ?? null,
-        'author' => $_POST['author'] ?? null,
-        'publisher_id' => $_POST['publisher_id'] ?? null,
         'year' => $_POST['year'] ?? null,
-        'isbn' => $_POST['isbn'] ?? null,
-        'format_ids' => $_POST['format_ids'] ?? [],
+        'publisher_id' => $_POST['publisher_id'] ?? null,
         'description' => $_POST['description'] ?? null,
-        'cover' => $_FILES['cover'] ?? null
+        'format' => $_POST['format'] ?? null,
+        'image' => $_FILES['image'] ?? null
     ];
 
     // Define validation rules
     $rules = [
-         'title' => "required|nonempty|min:5|max:255",
-        'author' => "required|nonempty|min:5|max:255",
+        'title' => "required|nonempty|min:5|max:255",
+        'year' => "required|nonempty",
         'publisher_id' => "required|nonempty|integer",
-        'year' => "required|nonempty|integer|minvalue:1900|maxvalue:" . $year,
-        'isbn' => "required|nonempty|min:13|max:13",
-        'format_ids' => "required|nonempty|array|min:1|max:4",
         'description' => "required|nonempty|min:10",
-        'cover' => 'required|file|image|mimies:jpg,jpeg,png|max_file_size:5242880'
+        'format_ids' =>  "required|nonempty|array|minvalue:1|maxvalue:4",
+        'image' => 'required|file|image|mimies:jpg,jpeg,png|max_file_size:5242880'
     ];
 
     // Validate all data (including file)
@@ -73,7 +69,7 @@ try {
     $book->title = $data['title'];
     $book->author = $data['author'];
     $book->year = $data['year'];
-    $book->format_ids_id = $data['format_ids'];
+    $book->format_ids = $data['format_ids'];
     $book->description = $data['description'];
     $book->cover_filename = $cover_filename;
 

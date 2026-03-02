@@ -23,7 +23,7 @@ try {
 } 
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
-    redirect('/index.php');
+    redirect('/book_list.php');
 }
 ?>
 <!DOCTYPE html>
@@ -45,8 +45,8 @@ catch (PDOException $e) {
                         <img src="images/<?= htmlspecialchars($book->cover_filename) ?>" />
 
                         <div class="actions">
-                            <a href="game_edit.php?id=<?= h($book->id) ?>">Edit</a> /
-                            <a href="game_delete.php?id=<?= h($book->id) ?>">Delete</a> /
+                            <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a> /
+                            <a href="book_delete.php?id=<?= h($book->id) ?>">Delete</a> /
                             <a href="index.php">Back</a>
                         </div>
                     </div>

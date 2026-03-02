@@ -13,6 +13,7 @@ catch (PDOException $e) {
 <html lang="en">
     <head>
         <?php include 'php/inc/head_content.php'; ?>
+        
         <title>Books</title>
     </head>
     <body>

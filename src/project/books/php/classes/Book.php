@@ -94,7 +94,7 @@ class Book {
         if ($this->id) {
             // Update existing record
             $stmt = $this->db->prepare("
-                UPDATE games
+                UPDATE books
                 SET title = :title,
                     author= :author
                     publisher_id = :publisher_id,

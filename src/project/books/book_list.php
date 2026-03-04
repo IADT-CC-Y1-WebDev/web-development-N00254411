@@ -12,6 +12,8 @@ catch (PDOException $e) {
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
+    
         <?php include 'php/inc/head_content.php'; ?>
         
         <title>Books</title>
@@ -51,6 +53,7 @@ catch (PDOException $e) {
                                 <h2><?= h($book->title) ?></h2>
                                 <p>Author: <?= h($book->author) ?></p>
                                 <p>Release Year: <?= h($book->year) ?></p>
+                                
                             </div>
                             <div class="bottom-content">
                                 <img src="images/<?= h($book->cover_filename) ?>" alt="Image for <?= h($book->title) ?>" />

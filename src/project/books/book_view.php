@@ -13,17 +13,18 @@ try {
         die("<p>Error: Book not found.</p>");
     }
 
-    $year = Book::findById($book->year);
-    // $platforms = Platform::findByGame($->id);
 
-    // $platformNames = [];
-    // foreach ($platforms as $platform) {
-    //     $platformNames[] = htmlspecialchars($platform->name);
-    // }
+    $publishers = Publisher::findById($book->year);
+    $formats = Format::findbyid($book->id);
+
+    $formatNames = [];
+    foreach ($formats as $format) {
+        $formatNames[] = htmlspecialchars($format->name);
+    }
 } 
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
-    redirect('/book_list.php');
+    redirect('/index.php');
 }
 ?>
 <!DOCTYPE html>

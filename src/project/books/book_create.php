@@ -86,10 +86,10 @@ catch (PDOException $e) {
                         <p><?= error('format_ids') ?></p>
                     </div>
                     <div class="input">
-                        <label class="special" for="image">Image (required):</label>
+                        <label class="special" for="cover_filename">Image (required):</label>
                         <div>
-                            <input type="file" id="image" name="image" accept="image/*" required>
-                            <p><?= error('image') ?></p>
+                            <input type="file" id="cover_filename" name="cover_filename" accept="images/*" required>
+                            <p><?= error('cover_filename') ?></p>
                         </div>
                     </div>
                     <div class="input">

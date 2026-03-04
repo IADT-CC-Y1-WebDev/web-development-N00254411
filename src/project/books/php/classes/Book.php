@@ -70,24 +70,24 @@ class Book {
     // }
 
     // // Find games by platform (requires JOIN with GamePlatforms table)
-    // public static function findByPlatform($platformId) {
-    //     $db = DB::getInstance()->getConnection();
-    //     $stmt = $db->prepare("
-    //         SELECT g.*
-    //         FROM games g
-    //         INNER JOIN game_platform gp ON g.id = gp.game_id
-    //         WHERE gp.platform_id = :platform_id
-    //         ORDER BY g.title
-    //     ");
-    //     $stmt->execute(['platform_id' => $platformId]);
+    public static function findByPlatform($formatId) {
+        $db = DB::getInstance()->getConnection();
+        $stmt = $db->prepare("
+            SELECT g.*
+            FROM games g
+            INNER JOIN BookFormat gp ON g.id = gp.book_id
+            WHERE gp.format_id = :format_id
+            ORDER BY g.title
+        ");
+        $stmt->execute(['format_id' => $formatId]);
 
-    //     $books = [];
-    //     while ($row = $stmt->fetch()) {
-    //         $books[] = new book($row);
-    //     }
+        $books = [];
+        while ($row = $stmt->fetch()) {
+            $books[] = new book($row);
+        }
 
-    //     return $books;
-    // }
+        return $books;
+    }
 
     // Save (insert or update)
     public function save() {

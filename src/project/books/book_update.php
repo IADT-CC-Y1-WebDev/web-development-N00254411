@@ -52,15 +52,15 @@ try {
     }
 
     // Find existing book
-    $book = Game::findById($data['id']);
+    $book = Book::findById($data['id']);
     if (!$book) {
-        throw new Exception('Game not found.');
+        throw new Exception('book not found.');
     }
 
-    // Verify genre exists
-    $genre = Genre::findById($data['genre_id']);
-    if (!$genre) {
-        throw new Exception('Selected genre does not exist.');
+    // Verify publisher_ids exists
+    $publisher_ids = Book::findById($data['publisher_id']);
+    if (!$publisher_ids) {
+        throw new Exception('Selected publisher_ids does not exist.');
     }
 
     // Verify platforms exist
@@ -71,15 +71,15 @@ try {
     }
 
     // Process the uploaded cover (validation already completed)
-    $imageFilename = null;
+    $coverFilename = null;
     $uploader = new ImageUpload();
-    if ($uploader->hasFile('cover')) {
+    if ($uploader->hasFile('cover_filename')) {
         // Delete old cover
-        $uploader->deleteImage($book->image_filename);
+        $uploader->deleteImage($book->cover_filename);
         // Process new cover
-        $imageFilename = $uploader->process($_FILES['cover']);
+        $coverFilename = $uploader->process($_FILES['cover']);
         // Check for processing errors
-        if (!$imageFilename) {
+        if (!$coverFilename) {
             throw new Exception('Failed to process and save the cover.');
         }
     }
@@ -89,19 +89,19 @@ try {
     $book->release_date = $data['release_date'];
     $book->genre_id = $data['genre_id'];
     $book->description = $data['description'];
-    if ($imageFilename) {
-        $book->image_filename = $imageFilename;
+    if ($coverFilename) {
+        $book->cover_filename = $coverFilename;
     }
 
     // Save to database
     $book->save();
 
     // Delete existing platform associations
-    GamePlatform::deleteByGame($book->id);
+    BookFormat::deleteByGame($book->id);
     // Create new platform associations
     if (!empty($data['format_ids']) && is_array($data['format_ids'])) {
-        foreach ($data['format_ids'] as $platformId) {
-            GamePlatform::create($book->id, $platformId);
+        foreach ($data['format_ids'] as $formatId) {
+            BookFormat::create($book->id, $formatId);
         }
     }
 
@@ -111,15 +111,15 @@ try {
     clearFormErrors();
 
     // Set success flash message
-    setFlashMessage('success', 'Game updated successfully.');
+    setFlashMessage('success', 'Book updated successfully.');
 
     // Redirect to book details page
-    redirect('game_view.php?id=' . $book->id);
+    redirect('book_view.php?id=' . $book->id);
 }
 catch (Exception $e) {
     // Error - clean up uploaded cover
-    if ($imageFilename) {
-        $uploader->deleteImage($imageFilename);
+    if ($cover_filename) {
+        $uploader->deleteImage($cover_filename);
     }
 
     // Set error flash message
@@ -131,7 +131,7 @@ catch (Exception $e) {
 
     // Redirect back to edit page if there is an ID; otherwise, go to index page
     if (isset($data['id']) && $data['id']) {
-        redirect('game_edit.php?id=' . $data['id']);
+        redirect('book_edit.php?id=' . $data['id']);
     }
     else {
         redirect('index.php');

@@ -20,10 +20,10 @@ try {
         throw new Exception("Book not found.");
     }
 
-    $BookFormat = Format::findByGame($book->id);
-    $bookFormatIds = [];
-    foreach ($BookFormat as $format) {
-        $bookFormatsIds[] = $format->id;
+    $formats = Format::findByBook($book->id);
+    $formatsIds = [];
+    foreach ($formats as $format) {
+        $formatsIds[] = $format->id;
     }
 
     $publishers = Publisher::findAll();
@@ -31,7 +31,7 @@ try {
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
-    redirect('/index.php');
+    redirect('/book_list.php');
 }
 ?>
 <!DOCTYPE html>
@@ -49,7 +49,7 @@ catch (PDOException $e) {
                 <h1>Edit Book</h1>
             </div>
             <div class="width-12">
-                <form action="game_update.php" method="POST" enctype="multipart/form-data">
+                <form action="book_update.php" method="POST" enctype="multipart/form-data" novalidate>
                     <div class="input">
                         <input type="hidden" name="id" value="<?= h($book->id) ?>">
                     </div>
@@ -61,18 +61,33 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
+                        <label class="special" for="author">Author:</label>
+                        <div>
+                            <input type="text" id="author" name="author" value="<?= old('author', $book->author) ?>" required>
+                            <p><?= error('author') ?></p>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <label class="special" for="isbn">ISBN:</label>
+                        <div>
+                            <input type="text" id="isbn" name="isbn" value="<?= old('isbn', $book->isbn) ?>" required>
+                            <p><?= error('isbn') ?></p>
+                        </div>
+                    </div>
+                      
+                    <div class="input">
                         <label class="special" for="year">Release Year:</label>
                         <div>
-                            <input type="date" id="year" name="year" value="<?= old('year', $book->year) ?>" required>
+                            <input type="text" id="year" name="year" value="<?= old('year', $book->year) ?>" required>
                             <p><?= error('year') ?></p>
                         </div>
                     </div>
                     <div class="input">
-                        <label class="special" for="publisher_ids">Publisher:</label>
+                        <label class="special" for="publisher">Publisher:</label>
                         <div>
-                            <select id="publisher_ids" name="publisher_ids" required>
+                            <select id="publisher_id" name="publisher_id" required>
                                 <?php foreach ($publishers as $publisher) { ?>
-                                    <option value="<?= h($publisher->id) ?>" <?= chosen('publisher_ids', $publisher->id, $book->publisher_ids) ? "selected" : "" ?>>
+                                    <option value="<?= h($publisher->id) ?>" <?= chosen('publisher_id', $publisher->id, $book->publisher_id) ? "selected" : "" ?>>
                                         <?= h($publisher->name) ?>
                                     </option>
                                 <?php } ?>
@@ -90,31 +105,31 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special">Formats:</label>
                         <div>
-                            <?php foreach ($formats as $platform) { ?>
+                            <?php foreach ($formats as $format) { ?>
                                 <div>
                                     <input type="checkbox" 
-                                        id="platform_<?= h($platform->id) ?>" 
+                                        id="format_<?= h($format->id) ?>" 
                                         name="format_ids[]" 
-                                        value="<?= h($platform->id) ?>"
-                                        <?= chosen('format_ids', $platform->id, $gamePlatformsIds) ? "checked" : "" ?>
+                                        value="<?= h($format->id) ?>"
+                                        <?= chosen('format_ids', $format->id, $formatsIds) ? "checked" : "" ?>
                                     >
-                                    <label for="platform_<?= h($platform->id) ?>"><?= h($platform->name) ?></label>
+                                    <label for="format_<?= h($format->id) ?>"><?= h($format->name) ?></label>
                                 </div>
                             <?php } ?>
                         </div>
                         <p><?= error('format_ids') ?></p>
                     </div>
-                    <div><img src="images/<?= $book->image_filename ?>" /></div>
+                    <div><img src="images/<?= $book->cover_filename ?>" /></div>
                     <div class="input">
                         <label class="special" for="cover_filename">Image (optional):</label>
                         <div>
-                            <input type="file" id="cover_filename" name="cover_filename" accept="cover_filename/*">
+                            <input type="file" id="cover_filename" name="cover_filename" accept="images/*">
                             <p><?= error('cover_filename') ?></p>
                         </div>
                     </div>
                     <div class="input">
                         <button class="button" type="submit">Update Book</button>
-                        <div class="button"><a href="index.php">Cancel</a></div>
+                        <div class="button"><a href="book_list.php">Cancel</a></div>
                     </div>
                 </form>
             </div>

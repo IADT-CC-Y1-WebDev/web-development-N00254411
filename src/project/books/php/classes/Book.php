@@ -4,6 +4,7 @@ class Book {
     public $id;
     public $title;
     public $author;
+    public $publisher_id;
     public $year;
     public $isbn;
     public $format_ids;
@@ -19,6 +20,7 @@ class Book {
             $this->id = $data['id'] ?? null;
             $this->title = $data['title'] ?? null;
             $this->author = $data['author'] ?? null;
+            $this->publisher_id = $data['publisher_id'] ?? null;
             $this->year = $data['year'] ?? null;
             $this->isbn = $data['isbn'] ?? null;
             $this->format_ids = $data['format_ids'] ?? null;
@@ -96,11 +98,10 @@ class Book {
             $stmt = $this->db->prepare("
                 UPDATE books
                 SET title = :title,
-                    author= :author
+                    author= :author,
                     publisher_id = :publisher_id,
                     year = :year,
-                    isbn = :isbn
-                    format_ids = :format_ids
+                    isbn = :isbn,
                     description = :description,
                     cover_filename = :cover_filename
                 WHERE id = :id
@@ -112,7 +113,6 @@ class Book {
                 'publisher_id' => $this->publisher_id,
                 'year' => $this->year,
                 'isbn'=>$this->isbn,
-                'format_ids'=>$this ->format_ids,
                 'description' => $this->description,
                 'cover_filename' => $this->cover_filename,
                 'id' => $this->id
@@ -121,8 +121,8 @@ class Book {
         else {
             // Insert new record
             $stmt = $this->db->prepare("
-                INSERT INTO books (title, author, publisher_id, year, isbn, format_id, description, cover_filename)
-                VALUES (:title, :author, :publisher_id, :year, :isbn, :format_ids, :description, :cover_filename)
+                INSERT INTO books (title, author, publisher_id, year, isbn, description, cover_filename)
+                VALUES (:title, :author, :publisher_id, :year, :isbn, :description, :cover_filename)
             ");
 
             $params = [
@@ -131,7 +131,6 @@ class Book {
                 'publisher_id' => $this->publisher_id,
                 'year' => $this->year,
                 'isbn'=>$this->isbn,
-                'format_ids'=>$this ->format_ids,
                 'description' => $this->description,
                 'cover_filename' => $this->cover_filename
             ];

@@ -52,7 +52,7 @@ class BookFormat {
     }
 
     // Delete all platform relationships for a specific book
-    public static function deleteByGame($bookId) {
+    public static function deleteByBook($bookId) {
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("
             DELETE FROM book_format

@@ -112,7 +112,13 @@ class Validator {
     }
 
     private function validateRequired($field, $value) {
-        if ($value === null || $value === '' || (is_array($value) && empty($value))) {
+        // Check if this is a file upload (has 'error' key from $_FILES)
+        if (is_array($value) && isset($value['error'])) {
+            if ($value['error'] === UPLOAD_ERR_NO_FILE) {
+                $this->addError($field, "The $field field is required.");
+            }
+        }
+        else if ($value === null || $value === '' || (is_array($value) && empty($value))) {
             $this->addError($field, "The $field field is required.");
         }
     }

@@ -34,7 +34,7 @@ try {
         'year' => "required|nonempty",
         'publisher_id' => "required|nonempty|integer",
         'description' => "required|nonempty|min:10",
-        'isbn' => "required|nonempty|min:13|max:13",
+        'isbn' => "required|nonempty|min:13",
         'format_ids' =>  "required|nonempty|array|minvalue:1|maxvalue:4",
         'cover_filename' => 'required|file|image|mimies:jpg,jpeg,png|max_file_size:5242880'
     ];

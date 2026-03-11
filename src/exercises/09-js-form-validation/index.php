@@ -23,7 +23,7 @@
     </p>
 
     <ul class="exercise-list">
-        <li><a href="#exercise-1">Exercise 09-1: Standalone books form validation</a></li>
+        <li><a href="01-contact.php">Exercise 09-1: Standalone books form validation</a></li>
         <li><a href="#exercise-2">Exercise 09-2: Integrate validation into the books project</a></li>
     </ul>
 

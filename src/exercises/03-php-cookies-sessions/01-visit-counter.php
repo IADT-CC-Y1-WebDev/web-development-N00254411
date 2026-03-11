@@ -116,7 +116,7 @@ if (isset($_GET['reset'])){
         // TODO Exercise 2: Write your solution here
         
         if ($visitCount === 1){
-            echo"welcome, first time user!"
+            echo"welcome, first time user!";
         }
         // =====================================================================
         ?>

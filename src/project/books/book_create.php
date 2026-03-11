@@ -5,13 +5,11 @@ require_once 'php/lib/forms.php';
 require_once 'php/lib/utils.php';
 
 startSession();
-
+dd($_SESSION);
 try {
     $book = Book::findAll();
     $publisher_ids = Publisher::findAll();
-    $format_ids = Format::findAll();
-
-    
+    $formats = Format::findAll();
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -33,7 +31,7 @@ catch (PDOException $e) {
                 <h1>Create Book</h1>
             </div>
             <div class="width-12">
-                <form action="book_store.php" method="POST" enctype="multipart/form-data">
+                <form action="book_store.php" method="POST" enctype="multipart/form-data" novalidate>
                     <div class="input">
                         <label class="special" for="title">Title:</label>
                         <div>
@@ -44,7 +42,7 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special" for="year">Year:</label>
                         <div>
-                            <input type="date" id="year" name="year" value="<?= old('year') ?>" required>
+                            <input type="text" id="year" name="year" value="<?= old('year') ?>" required>
                             <p><?= error('year') ?></p>
                         </div>
                     </div>
@@ -71,15 +69,15 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special">Formats:</label>
                         <div>
-                            <?php foreach ($format_ids as $format_id) { ?>
+                            <?php foreach ($formats as $format) { ?>
                                 <div>
                                     <input type="checkbox" 
-                                        id="format_<?= h($format_id->id) ?>" 
+                                        id="format_<?= h($format->id) ?>" 
                                         name="format_ids[]" 
-                                        value="<?= h($format_id->id) ?>"
-                                        <?= chosen('format_ids', $format_id->id) ? "checked" : "" ?>
+                                        value="<?= h($format->id) ?>"
+                                        <?= chosen('format_ids', $format->id) ? "checked" : "" ?>
                                         >
-                                    <label for="format_<?= h($format_id->id) ?>"><?= h($format_id->name) ?></label>
+                                    <label for="format_<?= h($format->id) ?>"><?= h($format->name) ?></label>
                                 </div>
                             <?php } ?>
                         </div>

@@ -14,17 +14,17 @@ try {
     }
 
 
-    $publishers = Publisher::findById($book->year);
-    $formats = Format::findbyid($book->id);
+    $publishers = Publisher::findById($book->publisher_id);
+    $formats = Format::findByBook($book->id);
 
     $formatNames = [];
     foreach ($formats as $format) {
         $formatNames[] = htmlspecialchars($format->name);
-    }
+    };
 } 
 catch (PDOException $e) {
-    setFlashMessage('error', 'Error: ' . $e->getMessage());
-    redirect('/index.php');
+    // setFlashMessage('error', 'Error: ' . $e->getMessage());
+    redirect('/book_list.php');
 }
 ?>
 <!DOCTYPE html>
@@ -48,15 +48,19 @@ catch (PDOException $e) {
                         <div class="actions">
                             <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a> /
                             <a href="book_delete.php?id=<?= h($book->id) ?>">Delete</a> /
-                            <a href="index.php">Back</a>
+                            <a href="book_list.php">Back</a>
                         </div>
                     </div>
 
                     <div class="bottom-content">
                         <h2><?= htmlspecialchars($book->title) ?></h2>
                         <p>Author: <?= htmlspecialchars($book->author) ?></p>
+                        <p>Publisher: <?= htmlspecialchars($publishers->name) ?></p>
+                        <p>ISBN: <?= htmlspecialchars($book->isbn) ?></p>
+                        <p>Format: <?= implode(',',$formatNames) ?></p>
                         <p>Year: <?= htmlspecialchars($book->year) ?></p>
                         <p>Description:<br /><?= nl2br(htmlspecialchars($book->description)) ?></p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -25,6 +25,7 @@
     <ul class="exercise-list">
         <li><a href="01-contact.php">Exercise 09-1: Standalone books form validation</a></li>
         <li><a href="#exercise-2">Exercise 09-2: Integrate validation into the books project</a></li>
+        <li><a href="2">Exercise 09-2: Integrate validation into the books project</a></li>
     </ul>
 
     <h2 id="exercise-1">Exercise 09-1: Standalone books form validation</h2>
@@ -74,6 +75,8 @@
         Finally, deliberately submit invalid data to confirm that both the JavaScript
         and the existing PHP validation behave as you expect.
     </p>
+
+    
 </body>
 
 </html>

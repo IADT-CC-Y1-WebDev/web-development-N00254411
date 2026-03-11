@@ -3,7 +3,6 @@
 class Format {
     public $id;
     public $name;
-    public $manufacturer;
 
     private $db;
 
@@ -13,7 +12,6 @@ class Format {
         if (!empty($data)) {
             $this->id = $data['id'] ?? null;
             $this->name = $data['name'] ?? null;
-            $this->manufacturer = $data['manufacturer'] ?? null;
         }
     }
 
@@ -46,13 +44,13 @@ class Format {
     }
 
     // Find formats by game (requires JOIN with book_format table)
-    public static function findByGame($bookid) {
+    public static function findByBook($bookid) {
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("
             SELECT f.*
             FROM formats f
-            INNER JOIN book_format gp ON f.id = gp._id
-            WHERE gp.book_id = :book_id
+            INNER JOIN book_format bf ON f.id = bf.format_id
+            WHERE bf.book_id = :book_id
             ORDER BY f.name
         ");
         $stmt->execute(['book_id' => $bookid]);

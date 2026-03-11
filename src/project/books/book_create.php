@@ -1,0 +1,107 @@
+<?php
+require_once 'php/lib/config.php';
+require_once 'php/lib/session.php';
+require_once 'php/lib/forms.php';
+require_once 'php/lib/utils.php';
+
+startSession();
+dd($_SESSION);
+try {
+    $book = Book::findAll();
+    $publisher_ids = Publisher::findAll();
+    $formats = Format::findAll();
+}
+catch (PDOException $e) {
+    setFlashMessage('error', 'Error: ' . $e->getMessage());
+    redirect('/book_list.php');
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <?php include 'php/inc/head_content.php'; ?>
+        <title>View Book</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="width-12">
+                <?php require 'php/inc/flash_message.php'; ?>
+            </div>
+            <div class="width-12">
+                <h1>Create Book</h1>
+            </div>
+            <div class="width-12">
+                <form action="book_store.php" method="POST" enctype="multipart/form-data" novalidate>
+                    <div class="input">
+                        <label class="special" for="title">Title:</label>
+                        <div>
+                            <input type="text" id="title" name="title" value="<?= old('title') ?>" required>
+                            <p><?= error('title') ?></p>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <label class="special" for="year">Year:</label>
+                        <div>
+                            <input type="text" id="year" name="year" value="<?= old('year') ?>" required>
+                            <p><?= error('year') ?></p>
+                        </div>
+                    </div>
+                 <div class="input">
+                        <label class="special" for="publisher_ids">Publisher:</label>
+                        <div>
+                            <select id="publisher_ids" name="publisher_id" required>
+                                <?php foreach ($publisher_ids as $publisher_id) { ?>
+                                    <option value="<?= h($publisher_id->id) ?>" <?= chosen('publisher_id', $publisher_id->id) ? "selected" : "" ?>>
+                                        <?= h($publisher_id->name) ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                            <p><?= error('publisher_id') ?></p>
+                        </div>
+                    </div> 
+                    <div class="input">
+                        <label class="special" for="description">Description:</label>
+                        <div>
+                            <textarea id="description" name="description" required><?= old('description') ?></textarea>
+                            <p><?= error('description') ?></p>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <label class="special">Formats:</label>
+                        <div>
+                            <?php foreach ($formats as $format) { ?>
+                                <div>
+                                    <input type="checkbox" 
+                                        id="format_<?= h($format->id) ?>" 
+                                        name="format_ids[]" 
+                                        value="<?= h($format->id) ?>"
+                                        <?= chosen('format_ids', $format->id) ? "checked" : "" ?>
+                                        >
+                                    <label for="format_<?= h($format->id) ?>"><?= h($format->name) ?></label>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <p><?= error('format_ids') ?></p>
+                    </div>
+                    <div class="input">
+                        <label class="special" for="cover_filename">Image (required):</label>
+                        <div>
+                            <input type="file" id="cover_filename" name="cover_filename" accept="images/*" required>
+                            <p><?= error('cover_filename') ?></p>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <button  class="button" type="submit">Store Book</button>
+                        <div class="button"><a href="book_list.php">Cancel</a></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
+<?php
+// Clear form data after displaying
+clearFormData();
+// Clear errors after displaying
+clearFormErrors();
+?>

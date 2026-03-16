@@ -113,7 +113,9 @@ function onSubmitForm(evt) {
     }
 
     // image
-    
+    if(imageInput.files.length === 0){
+        addError('image', 'Image is required.')
+    }
 
 
     showFieldErrors();

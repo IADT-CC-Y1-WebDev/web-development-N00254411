@@ -125,6 +125,4 @@ function onSubmitForm(evt) {
         // gameForm.submit();
         alert('Form data valid');
     }
-    
-
 }

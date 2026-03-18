@@ -20,6 +20,7 @@ try {
     // Get form data
     $data = [
         'title' => $_POST['title'] ?? null,
+        'author' => $_POST['author'] ?? null,
         'year' => $_POST['year'] ?? null,
         'isbn' => $_POST['isbn'] ?? null,
         'publisher_id' => $_POST['publisher_id'] ?? null,
@@ -31,6 +32,7 @@ try {
     // Define validation rules
     $rules = [
         'title' => "required|nonempty|min:5|max:255",
+        'author' => "required|nonempty|min:5|max:255",
         'year' => "required|nonempty",
         'publisher_id' => "required|nonempty|integer",
         'description' => "required|nonempty|min:10",

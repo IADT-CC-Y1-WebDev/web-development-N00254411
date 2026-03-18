@@ -53,6 +53,13 @@ catch (PDOException $e) {
                             <p><?= error('year') ?></p>
                         </div>
                     </div>
+                    <div class="input">
+                        <label class="special" for="isbn">ISBN:</label>
+                        <div>
+                            <input type="text" id="isbn" name="isbn" value="<?= old('isbn') ?>" required>
+                            <p><?= error('isbn') ?></p>
+                        </div>
+                    </div>
                  <div class="input">
                         <label class="special" for="publisher_ids">Publisher:</label>
                         <div>

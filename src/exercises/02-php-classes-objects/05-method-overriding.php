@@ -33,7 +33,12 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Undergrad.php';
-        ?>
+        require_once __DIR__ . '/classes/Undergrad.php';
+        $student = new Student("Janek" , "957974");
+        $undergrad = new Undergrad(" Mary" , "984566", "Biology", 2 );
+        echo $student . "<br>";
+        echo $undergrad . "<br>";
+         ?>
     </div>
 
     <!-- Exercise 2 -->
@@ -61,6 +66,10 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Postgrad.php';
+        require_once __DIR__ . '/classes/Postgrad.php';
+        $postgrad = new Postgrad(" Martina" , "987654", "Dr. Smith", "Cancer Research");
+        echo $postgrad . "<br>";
+
         ?>
     </div>
 
@@ -79,6 +88,15 @@
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Undergrad.php';
         // require_once __DIR__ . '/classes/Postgrad.php';
+        require_once __DIR__ . '/classes/Undergrad.php';
+        require_once __DIR__ . '/classes/Postgrad.php';
+        $student = new Student("Janek" , "957974");
+        $undergrad = new Undergrad(" Mary" , "984566", "Biology", 2 );
+        $postgrad = new Postgrad(" Martina" , "987654", "Dr. Smith", "Cancer Research");
+        $students = [$student, $undergrad, $postgrad];
+        foreach ($students as $s) {
+            echo $s . "<br>";
+        }
         ?>
     </div>
 

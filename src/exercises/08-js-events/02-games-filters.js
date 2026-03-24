@@ -3,30 +3,61 @@ let clearBtn = document.getElementById('clear_filters');
 
 let form = document.getElementById("filters");
 
-let cards = document.querySelector("filters")
+let cards = document.querySelectorAll(".card");
 
 applyBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    appplyFilters();
+    applyFilters();
 })
 clearBtn.addEventListener('click', (event) => {
     event.preventDefault();
     clearFilters();
 })
 
-function appplyFilters(){
+function applyFilters(){
     let filters = getFilters();
-    let matches = [];
-    for (let i = 0; i != cards.length;i++){
+    // let matches = [];
+    for(let i = 0; i != cards.length; i++){
         let card = cards[i];
-        matches[i] = cardMatches(card, filters);
+        let match = cardMatches(card, filters);
+        card.classList.toggle('hidden',!match)
     }
-    console.log(matches);
+    let cardsArray = Arrray.from(cards);
+    const sorted = sortCards(cardsArray, filters.sortBy);
 }
 
+function sortCards(cards , sortBy){
+    const list = cards.slice();
+
+    list.sort((a,b) => {
+    let titleA = a.dataset.title.toLowerCase();
+    let titleB = b.dataset.title.toLowerCase();
+    let yearA = Number(a.dataset.year);
+    let yearB = Number(b.dataset.year);
+
+    if (sortBy === "year_desc") return yearB - yearA;
+    if (sortBy === "year_asc") return yearA - yearB;
+
+    return titleA.localeCompare(titleB);
+});
+
+    return list;
+}
+
+
+
+
 function cardMatches(crd, fltrs){
-    console.log(crd.dataset.title.fltrs.titleFilter);
-    return crd.dataset.title.toLowerCase().includes(fltrs.titleFilter);
+    // console.log(crd.dataset.title,fltrs.titleFilter);
+    let title = crd.dataset.title.toLowerCase();
+    let genre = crd.dataset.genre;
+    let platform = crd.dataset.platform;
+
+    let matchTitle = fltrs.titleFilter === "" || title.includes(fltrs.titleFilter);
+    let matchGenre = fltrs.genreFilter === "" || genre === fltrs.genreFilter;
+    let matchPlatform = fltrs.platformFilter === "" || platform.includes(fltrs.platformFilter);
+
+    return matchTitle && matchGenre && matchPlatform;
 }
 
 function getFilters(){
@@ -38,7 +69,7 @@ function getFilters(){
     let titleFilter = (titleEl.value || '').trim().toLowerCase();
     let genreFilter = genreEl.value || '';
     let platformFilter = platformEl.value || '';
-    let sortBy = sortEl.value || 'title_asc';
+    let sortBy = sortEl.value || '';
 
     return{
         "titleFilter" : titleFilter,
@@ -49,7 +80,7 @@ function getFilters(){
     };
 }
 
-function clearFilters(){
-    let filters = getFilters();
+// function clearFilters(){
+//     let filters = getFilters();
     
-}
+// }

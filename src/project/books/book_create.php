@@ -5,10 +5,10 @@ require_once 'php/lib/forms.php';
 require_once 'php/lib/utils.php';
 
 startSession();
-dd($_SESSION);
+
 try {
     $book = Book::findAll();
-    $publisher_ids = Publisher::findAll();
+    $publishers = Publisher::findAll();
     $formats = Format::findAll();
 }
 catch (PDOException $e) {
@@ -19,6 +19,7 @@ catch (PDOException $e) {
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        
         <?php include 'php/inc/head_content.php'; ?>
         <title>View Book</title>
     </head>
@@ -61,16 +62,17 @@ catch (PDOException $e) {
                         </div>
                     </div>
                  <div class="input">
-                        <label class="special" for="publisher_ids">Publisher:</label>
+                        <label class="special" for="publisher">Publisher:</label>
                         <div>
-                            <select id="publisher_ids" name="publisher_ids" required>
-                                <?php foreach ($publisher_ids as $publisher_id) { ?>
-                                    <option value="<?= h($publisher_id->id) ?>" <?= chosen('publisher_id', $publisher_id->id) ? "selected" : "" ?>>
-                                        <?= h($publisher_id->name) ?>
+                            <select id="publisher" name="publisher" required>
+                                <option value="">Choose a publisher</option>
+                                <?php foreach ($publishers as $publisher) { ?>
+                                    <option value="<?= h($publisher->id) ?>" <?= chosen('publisher', $publisher->id) ? "selected" : "" ?>>
+                                        <?= h($publisher->name) ?>
                                     </option>
                                 <?php } ?>
                             </select>
-                            <p><?= error('publisher_id') ?></p>
+                            <p><?= error('publisher') ?></p>
                         </div>
                     </div> 
                     <div class="input">

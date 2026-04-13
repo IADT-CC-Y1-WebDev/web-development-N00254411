@@ -62,7 +62,7 @@ body {
 }
 
 .filters {
-	background-color: #ebc1ff;
+	background-color: #805d91;
 	padding: 10px;
 	display: flex;
 	justify-content: flex-end;
@@ -93,10 +93,10 @@ body {
 
 .filters form button {
 	font-size: 13px;
-	background-color: #15008f;
+	background-color: #412b4b;
 	padding: 5px 10px;
 	color: #ececec;
-	border: 1px solid #4bff3c;
+	border: 1px solid #83699b;
 	border-radius: 5px;
 }
 
@@ -108,10 +108,10 @@ body {
 
 .button {
 	font-size: 13px;
-	background-color: #123991;
+	background-color: #412b4b;
 	padding: 5px 10px;
 	color: #ececec;
-	border: 1px solid #4bff3c;
+	border: 1px solid #be99c5;
 	border-radius: 5px;
 }
 
@@ -133,7 +133,7 @@ body {
 	font-family: "IBM Plex Serif";
 	margin-bottom: 12px;
 	font-weight: 300;
-	color: #016040;
+	color: #a280c2;
 }
 
 .hCard p {
@@ -154,14 +154,14 @@ body {
 }
 
 .hCard .actions a:hover {
-	color: #2c22df;
+	color: #412b4b;
 }
 
 .hCard img {
 	width: 340px;
 	margin-bottom: 10px;
 	object-fit: cover;
-	border: 1px solid #7c75f1;
+	border: 1px solid #412b4b;
 	height: 340px;
 }
 

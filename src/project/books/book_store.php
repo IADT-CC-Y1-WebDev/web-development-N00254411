@@ -23,9 +23,9 @@ try {
         'author' => $_POST['author'] ?? null,
         'year' => $_POST['year'] ?? null,
         'isbn' => $_POST['isbn'] ?? null,
-        'publisher_id' => $_POST['publisher_id'] ?? null,
+        'publisher' => $_POST['publisher'] ?? "",
         'description' => $_POST['description'] ?? null,
-        'format_ids' => $_POST['format_ids'] ?? null,
+        'format_ids' => $_POST['format_ids'] ?? "",
         'cover_filename' => $_FILES['cover_filename'] ?? null
     ];
 
@@ -34,7 +34,7 @@ try {
         'title' => "required|nonempty|min:5|max:255",
         'author' => "required|nonempty|min:5|max:255",
         'year' => "required|nonempty",
-        'publisher_id' => "required|nonempty|integer",
+        'publisher' => "required|nonempty|integer",
         'description' => "required|nonempty|min:10",
         'isbn' => "required|nonempty|min:13",
         'format_ids' =>  "required|nonempty|array|minvalue:1|maxvalue:4",
@@ -55,8 +55,8 @@ try {
 
     // All validation passed - now process and save
     // Verify genre exists
-    $publisher_ids = Book::findById($data['publisher_ids']);
-    if (!$publisher_ids) {
+    $publisher_id = Book::findById($data['publisher']);
+    if (!$publisher_id) {
         throw new Exception('Selected publisher does not exist.');
     }
 
@@ -73,6 +73,7 @@ try {
     $book->title = $data['title'];
     $book->author = $data['author'];
     $book->year = $data['year'];
+    // $book->publisher_id = $data['publisher'];
     $book->format_ids = $data['format_ids'];
     $book->description = $data['description'];
     $book->cover_filename = $cover_filename;

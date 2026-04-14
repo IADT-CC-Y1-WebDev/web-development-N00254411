@@ -19,29 +19,35 @@ catch (PDOException $e) {
         <title>Books</title>
     </head>
     <body>
-        <div class="container">
-            <div class="width-12 header">
-                <?php require 'php/inc/flash_message.php'; ?>
-                <div class="button">
-                    <a href="book_create.php?id=">Add New Book</a>
+        
+    
+            <div class="container">
+                <div class="width-12">
+                    <h1>Book Storage</h1>
                 </div>
             </div>
             <?php if (!empty($books)) { ?>
-                <div class="width-12 filters">
+                <div class="width-12">
                     <form>
-                        <div>
+                        <div class="filters">
+                            <div class="button">
+                                <a href="book_create.php?id=">Add New Book</a>
+                            </div>
                             <label for="title_filter">Title:</label>
                             <input type="text" id="title_filter" name="title_filter">
-                        </div>
-                      
                         <div>
                             <button type="button" id="apply_filters">Apply Filters</button>
                             <button type="button" id="clear_filters">Clear Filters</button>
                         </div>
+                    </div>
                     </form>
                 </div>
             <?php } ?>
         </div>
+        <div class="container">
+            <div class="width-12 header">
+                <?php require 'php/inc/flash_message.php'; ?>
+            </div>
         <div class="container">
             <?php if (empty($books)) { ?>
                 <p>No books found.</p>

@@ -77,7 +77,7 @@ try {
 
     // Process the uploaded cover (validation already completed)
     $coverFilename = null;
-    $uploader = new ImageUpload();
+    $uploader = new ImageUpload(__DIR__ . '/images/');
     if ($uploader->hasFile('cover_filename')) {
         // Delete old cover
         $uploader->deleteImage($book->cover_filename);

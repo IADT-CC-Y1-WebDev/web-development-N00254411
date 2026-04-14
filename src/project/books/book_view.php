@@ -13,7 +13,7 @@ try {
         die("<p>Error: Book not found.</p>");
     }
 
-
+    // dd($book);
     $publishers = Publisher::findById($book->publisher_id);
     $formats = Format::findByBook($book->id);
 

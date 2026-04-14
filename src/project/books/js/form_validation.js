@@ -12,11 +12,13 @@ let formatIdsInput = document.getElementsByName('format_ids[]');
 let coverInput = document.getElementById('coverfilename');
 
 let titleError = document.getElementById('title_error');
-let releaseDateError = document.getElementById('release_date_error');
-let genreIdError = document.getElementById('genre_id_error');
+let authorError = document.getElementById('author_error');
+let yearError = document.getElementById('year_error');
+let isbnError = document.getElementById('isbn_error');
+let publisherIdError = document.getElementById('publisher_id_error');
 let descriptionError = document.getElementById('description_error');
-let platformIdsError = document.getElementById('platform_ids_error');
-let imageError = document.getElementById('image_error');
+let formatIdError = document.getElementById('format_id_error');
+let coverfilenameError = document.getElementById('cover_filename_error');
 
 let errors = {};
 

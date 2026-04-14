@@ -62,17 +62,17 @@ catch (PDOException $e) {
                         </div>
                     </div>
                  <div class="input">
-                        <label class="special" for="publisher">Publisher:</label>
+                        <label class="special" for="publisher_id">Publisher:</label>
                         <div>
-                            <select id="publisher" name="publisher" required>
+                            <select id="publisher" name="publisher_id" required>
                                 <option value="">Choose a publisher</option>
                                 <?php foreach ($publishers as $publisher) { ?>
-                                    <option value="<?= h($publisher->id) ?>" <?= chosen('publisher', $publisher->id) ? "selected" : "" ?>>
+                                    <option value="<?= h($publisher->id) ?>" <?= chosen('publisher_id', $publisher->id) ? "selected" : "" ?>>
                                         <?= h($publisher->name) ?>
                                     </option>
                                 <?php } ?>
                             </select>
-                            <p><?= error('publisher') ?></p>
+                            <p><?= error('publisher_id') ?></p>
                         </div>
                     </div> 
                     <div class="input">

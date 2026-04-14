@@ -23,18 +23,19 @@ try {
         'author' => $_POST['author'] ?? null,
         'year' => $_POST['year'] ?? null,
         'isbn' => $_POST['isbn'] ?? null,
-        'publisher' => $_POST['publisher'] ?? "",
+        'publisher_id' => $_POST['publisher_id'] ?? "",
         'description' => $_POST['description'] ?? null,
         'format_ids' => $_POST['format_ids'] ?? "",
         'cover_filename' => $_FILES['cover_filename'] ?? null
     ];
 
     // Define validation rules
+    $year = date('Y');
     $rules = [
         'title' => "required|nonempty|min:5|max:255",
         'author' => "required|nonempty|min:5|max:255",
-        'year' => "required|nonempty",
-        'publisher' => "required|nonempty|integer",
+        'year' => "required|nonempty|integer|minvalue:1900|maxvalue:" . $year,
+        'publisher_id' => "required|nonempty|integer",
         'description' => "required|nonempty|min:10",
         'isbn' => "required|nonempty|min:13",
         'format_ids' =>  "required|nonempty|array|minvalue:1|maxvalue:4",
@@ -55,14 +56,14 @@ try {
 
     // All validation passed - now process and save
     // Verify genre exists
-    $publisher_id = Book::findById($data['publisher']);
+    $publisher_id = Book::findById($data['publisher_id']);
     if (!$publisher_id) {
         throw new Exception('Selected publisher does not exist.');
     }
 
     // Process the uploaded image (validation already completed)
-    $uploader = new ImageUpload();
-    $cover_filename = $uploader->process($_FILES['cover']);
+    $uploader = new ImageUpload(__DIR__ . '/images/');
+    $cover_filename = $uploader->process($_FILES['cover_filename']);
 
     if (!$cover_filename) {
         throw new Exception('Failed to process and save the image.');
@@ -73,7 +74,8 @@ try {
     $book->title = $data['title'];
     $book->author = $data['author'];
     $book->year = $data['year'];
-    // $book->publisher_id = $data['publisher'];
+    $book->publisher_id = $data['publisher_id'];
+    $book->isbn = $data['isbn'];
     $book->format_ids = $data['format_ids'];
     $book->description = $data['description'];
     $book->cover_filename = $cover_filename;

@@ -5,7 +5,12 @@ body {
 	line-height: 1.5em;
 	background-color: #f1baff;
 }
-
+h1{
+	font-family: "dm DM Serif Display" ;
+	font-size: 40px;
+	font-weight: 700;
+	text-align: center;
+}
 .cards {
 	display: flex;
 	gap: 40px 20px;
@@ -66,6 +71,7 @@ body {
 	padding: 10px;
 	display: flex;
 	justify-content: flex-end;
+	margin: 0px 350px;
 }
 
 .filters form {
@@ -111,8 +117,12 @@ body {
 	background-color: #412b4b;
 	padding: 5px 10px;
 	color: #ececec;
-	border: 1px solid #be99c5;
+	border: 1px solid #38303a;
 	border-radius: 5px;
+	display: inline-block;
+	align-items: start;
+	justify-content: start;
+	margin-right: 20px;
 }
 
 .hCard {
@@ -163,6 +173,7 @@ body {
 	object-fit: cover;
 	border: 1px solid #412b4b;
 	height: 340px;
+
 }
 
 form {

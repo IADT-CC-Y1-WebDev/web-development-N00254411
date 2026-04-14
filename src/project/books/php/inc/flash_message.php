@@ -5,10 +5,10 @@ require_once 'php/lib/utils.php';
 startSession();
 $flash = getFlashMessage();
 if ($flash) { ?>
-    <h1 class="flash-message <?= h($flash['type']) ?>">
+    <div class="flash-message <?= h($flash['type']) ?>">
         <?= h($flash['message']) ?>
-    </h1>
+</div>
 <?php } else { ?>
-    <!-- No flash message to display -->
-    <h1></h1> 
+    
+    <div></div> 
 <?php } ?>

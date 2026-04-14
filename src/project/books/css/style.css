@@ -3,13 +3,15 @@ body {
 	font-size: 16px;
 	font-weight: 700;
 	line-height: 1.5em;
-	background-color: #f1baff;
+	background-color: #593566;
 }
 h1{
 	font-family: "dm DM Serif Display" ;
 	font-size: 40px;
 	font-weight: 700;
 	text-align: center;
+	color: #be87cc;
+
 }
 .cards {
 	display: flex;
@@ -18,10 +20,10 @@ h1{
 }
 
 .card {
-	background-color: #d792ff;
+	background-color: #85599e;
 	padding: 16px;
 	border-radius: 7px;
-	border: 1px solid #bcbcbc;
+	border: 1px solid #6e4975;
 	width: 285px;
 	display: flex;
 	flex-direction: column;
@@ -34,7 +36,7 @@ h1{
 	font-family: "IBM Plex Serif";
 	margin-bottom: 12px;
 	font-weight: 700;
-	color: #7d6eff;
+	color: #b39dc4;
 }
 
 .card p {
@@ -49,7 +51,7 @@ h1{
 
 .card .actions a {
 	font-weight: 600;
-	color: #680075;
+	color: #a58da8;
 	font-size: 13px;
 	text-transform: uppercase;
 }
@@ -71,9 +73,7 @@ h1{
 	padding: 10px;
 	display: flex;
 	justify-content: flex-end;
-	margin: 0px 350px;
 }
-
 .filters form {
 	display: flex;
 	gap: 15px;

@@ -26,6 +26,7 @@ catch (PDOException $e) {
                     <h1>Book Storage</h1>
                 </div>
             </div>
+            <div class="container">
             <?php if (!empty($books)) { ?>
                 <div class="width-12">
                     <form>
@@ -43,11 +44,13 @@ catch (PDOException $e) {
                     </form>
                 </div>
             <?php } ?>
-        </div>
-        <div class="container">
-            <div class="width-12 header">
-                <?php require 'php/inc/flash_message.php'; ?>
             </div>
+            </div>
+
+            <div class="width-12 header">
+                <!-- <?php require 'php/inc/flash_message.php'; ?> -->
+            </div>
+
         <div class="container">
             <?php if (empty($books)) { ?>
                 <p>No books found.</p>

@@ -52,31 +52,31 @@ function sortCards(cards, sortBy) {
 function cardMatches(crd, fltrs) {
     // console.log(crd.dataset.title, fltrs.titleFilter);
     let title = crd.dataset.title.toLowerCase();
-    let genre = crd.dataset.genre;
-    let platform = crd.dataset.platform;
+    let publisher_id = crd.dataset.publisher;
+    let format_ids = crd.dataset.format;
 
     let matchTitle    = fltrs.titleFilter    === "" || title.includes(fltrs.titleFilter);
-    let matchPublisher    = fltrs.publisherFilter    === "" || genre === fltrs.publisherFilter;
-    let matchFormat = fltrs.platformFilter === "" || platform.includes(fltrs.platformFilter);
+    let matchPublisher    = fltrs.publisherFilter    === "" || publisher_id === fltrs.publisherFilter;
+    let matchFormat = fltrs.formatFilter === "" || format_ids.includes(fltrs.formatFilter);
 
     return matchTitle && matchPublisher && matchFormat;
 }
 
 function getFilters() {
     const titleEl = form.elements['title_filter'];
-    const genreEl = form.elements['genre_filter'];
-    const platformEl = form.elements['platform_filter'];
+    const publisherEl = form.elements['publisher_filter'];
+    const formatEl = form.elements['format_filter'];
     const sortEl = form.elements['sort_by'];
 
     let titleFilter = (titleEl.value || '').trim().toLowerCase();
-    let genreFilter = genreEl.value || '';
-    let platformFilter = platformEl.value || '';
+    let publisherFilter = publisherEl.value || '';
+    let formatFilter = formatEl.value || '';
     let sortBy = sortEl.value || 'title_asc';
 
     return {
         "titleFilter" : titleFilter,
-        "genreFilter" : genreFilter,
-        "platformFilter" : platformFilter,
+        "publisherFilter" : publisherFilter,
+        "formatFilter" : formatFilter,
         "sortBy" : sortBy
     };
 }

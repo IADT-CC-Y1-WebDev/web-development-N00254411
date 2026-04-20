@@ -37,6 +37,19 @@ catch (PDOException $e) {
                             <label for="title_filter">Title:</label>
                             <input type="text" id="title_filter" name="title_filter">
                         <div>
+                    <div>
+            <label class="publisherFilter" for="publisherFilter"> Publisher:</label>
+            
+                <select id="publisherFilter" name="publisherFilter">
+                    <option value="">All Publishers</option>
+                    <?php foreach ($publisher_id as $publisher): ?>
+                        <option value="<?= htmlspecialchars($publisher) ?>">
+                            <?= htmlspecialchars($publisher) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
                             <button type="button" id="apply_filters">Apply Filters</button>
                             <button type="button" id="clear_filters">Clear Filters</button>
                         </div>

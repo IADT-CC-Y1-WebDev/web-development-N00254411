@@ -43,7 +43,6 @@ class Format {
         return null;
     }
 
-    // Find formats by game (requires JOIN with book_format table)
     public static function findByBook($bookid) {
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("

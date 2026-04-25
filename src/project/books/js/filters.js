@@ -18,7 +18,6 @@ clearBtn.addEventListener('click', (event) => {
 function applyFilters() {
     // console.log("Applying filters");
     let filters = getFilters();
-    // let matches = [];
     for (let i = 0; i != cards.length; i++) {
         let card = cards[i];
         let match = cardMatches(card, filters);
@@ -26,9 +25,6 @@ function applyFilters() {
     }
     let cardsArray = Array.from(cards);
     const sorted = sortCards(cardsArray, filters.sortBy);
-    sorted.forEach(card => {
-        cardsContainer.appendChild(card);
-    });
 }
 
 function sortCards(cards, sortBy) {
@@ -52,31 +48,31 @@ function sortCards(cards, sortBy) {
 function cardMatches(crd, fltrs) {
     // console.log(crd.dataset.title, fltrs.titleFilter);
     let title = crd.dataset.title.toLowerCase();
-    let genre = crd.dataset.genre;
-    let platform = crd.dataset.platform;
+    let publisher_id = crd.dataset.publisher_id.toLowerCase();
+    let format_ids = crd.dataset.format_ids.toLowerCase();
 
     let matchTitle    = fltrs.titleFilter    === "" || title.includes(fltrs.titleFilter);
-    let matchPublisher    = fltrs.publisherFilter    === "" || genre === fltrs.publisherFilter;
-    let matchFormat = fltrs.platformFilter === "" || platform.includes(fltrs.platformFilter);
+    let matchPublisher    = fltrs.publisherFilter    === "" || publisher_id === fltrs.publisherFilter;
+    let matchFormat = fltrs.formatFilter === "" || format_ids.includes(fltrs.formatFilter);
 
     return matchTitle && matchPublisher && matchFormat;
 }
 
 function getFilters() {
     const titleEl = form.elements['title_filter'];
-    const genreEl = form.elements['genre_filter'];
-    const platformEl = form.elements['platform_filter'];
+    const publisherEl = form.elements['publisher_id_filter'];
+    const formatEl = form.elements['format_ids_filter'];
     const sortEl = form.elements['sort_by'];
 
     let titleFilter = (titleEl.value || '').trim().toLowerCase();
-    let genreFilter = genreEl.value || '';
-    let platformFilter = platformEl.value || '';
-    let sortBy = sortEl.value || 'title_asc';
+    let publisherFilter = publisherEl.value || '';
+    let formatFilter = formatEl.value || '';
+    let sortBy = sortEl.value || 'year_desc';
 
     return {
         "titleFilter" : titleFilter,
-        "genreFilter" : genreFilter,
-        "platformFilter" : platformFilter,
+        "publisherFilter" : publisherFilter,
+        "formatFilter" : formatFilter,
         "sortBy" : sortBy
     };
 }
@@ -84,3 +80,4 @@ function getFilters() {
 function clearFilters() {
     console.log("Clearing filters");
 }
+

@@ -57,35 +57,20 @@ class Book {
         return null;
     }
 
-    // // Find games by genre
-    // public static function findByGenre($genreId) {
-    //     $db = DB::getInstance()->getConnection();
-    //     $stmt = $db->prepare("SELECT * FROM books WHERE format_ids = :format_ids ORDER BY title");
-    //     $stmt->execute(['format_ids' => $format_ids]);
-
-    //     $books = [];
-    //     while ($row = $stmt->fetch()) {
-    //         $books[] = new Book($row);
-    //     }
-
-    //     return $books;
-    // }
-
-    // // Find games by platform (requires JOIN with GamePlatforms table)
     public static function findByPlatform($formatId) {
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("
-            SELECT g.*
-            FROM games g
-            INNER JOIN BookFormat gp ON g.id = gp.book_id
+            SELECT b.*
+            FROM books b
+            INNER JOIN BookFormat gp ON b.id = gp.book_id
             WHERE gp.format_id = :format_id
-            ORDER BY g.title
+            ORDER BY b.title
         ");
         $stmt->execute(['format_id' => $formatId]);
 
         $books = [];
         while ($row = $stmt->fetch()) {
-            $books[] = new book($row);
+            $books[] = new Book($row);
         }
 
         return $books;

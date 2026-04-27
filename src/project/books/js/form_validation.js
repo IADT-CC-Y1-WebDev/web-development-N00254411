@@ -6,10 +6,10 @@ let titleInput = document.getElementById('title');
 let authorInput = document.getElementById('author');
 let yearInput = document.getElementById('year');
 let isbnInput = document.getElementById('isbn');
-let publisherIdInput = document.getElementById('publisher_id');
+let publisherIdInput = document.getElementById('publisher');
 let descriptionInput = document.getElementById('description');
 let formatIdsInput = document.getElementsByName('format_ids[]');
-let coverInput = document.getElementById('coverfilename');
+let coverInput = document.getElementById('cover_filename');
 
 let titleError = document.getElementById('title_error');
 let authorError = document.getElementById('author_error');
@@ -48,11 +48,15 @@ function showErrorSummaryTop() {
 
 function showFieldErrors() {
     titleError.innerHTML = errors.title || '';
-    releaseDateError.innerHTML = errors.year || '';
-    genreIdError.innerHTML = errors.publisher_id || '';
+    authorError.innerHTML = errors.author || '';
+    yearError.innerHTML = errors.year || '';
+    isbnError.innerHTML = errors.isbn || '';
+    publisherIdError.innerHTML = errors.publisher_id || '';
     descriptionError.innerHTML = errors.description || '';
-    platformIdsError.innerHTML = errors.format_ids || '';
-    imageError.innerHTML = errors.cover || '';
+    formatIdError.innerHTML = errors.format_ids || '';
+    coverfilenameError.innerHTML = errors.cover_filename || '';
+
+    console.log(errors)
 }
 
 function isRequired(value) {
@@ -74,6 +78,8 @@ function onSubmitForm(evt) {
 
     let titleMin = titleInput.dataset.minlength || 3;
     let titleMax = titleInput.dataset.maxlength || 255;
+    let isbnMin = isbnInput.dataset.mininteger || 13;
+    let isbnMax = isbnInput.dataset.maxinteger || 13;
     let descMin = 10;
 
     // Title Validation
@@ -84,15 +90,28 @@ function onSubmitForm(evt) {
     } else if(!isMaxLength(titleInput.value , titleMax)){
         addError('title','Title must be at most' + titleMax +'characters!');
     }
-
-    // release date
-    if(!isRequired(releaseDateInput.value)){
-        addError('year', 'Year is required!');
+    // Author
+    if(!isRequired(authorInput.value)){
+        addError('author', 'Author is required!');
     }
 
-    // genre
-    if(!isRequired(publsiherIdInput.value)){
-        addError('publsiher' , 'Publisher is required');
+    // Year
+    if(!isRequired(yearInput.value)){
+        addError('year', 'Year is required!');
+    }
+    //ISBN
+    if(!isRequired(isbnInput.value)){
+        addError('isbn','ISBN is required!');
+    } else if(!isMinLength(isbnInput.value, isbnMin)){
+        addError('isbn', 'ISBN must be at least '+ isbnMin +' characters!');
+    } else if(!isMinLength(isbnInput.value, isbnMax)){
+        addError('isbn', 'ISBN must be at least '+ isbnMax +' characters!');
+    }
+
+
+    // Publisher
+    if(!isRequired(publisherIdInput.value)){
+        addError('publisher' , 'Publisher is required');
     }
 
     // description
@@ -102,29 +121,28 @@ function onSubmitForm(evt) {
         addError('description', `Description needs to be at least ${descMin} characters`);
     }
 
-    // platforms
-    let platformChecked = false;
-    for(let i=0; i < platformIdsInput.length; i++){
-        if(platformIdsInput[i].checked){
-            platformChecked = true;
+    // Format
+    let formatIdChecked = false;
+    for(let i=0; i < formatIdsInput.length; i++){
+        if(formatIdsInput[i].checked){
+            formatIdChecked = true;
             break;
         } 
     }
-    if(!platformChecked){
-        addError('platform_ids','Select at least one platform.')
+    if(!formatIdChecked){
+        addError('format_','Select at least one format.')
     }
 
     // image
-    if(imageInput.files.length === 0){
-        addError('image', 'Image is required.')
+    if(coverInput.files.length === 0){
+        addError('cover_filename', 'Image is required.')
     }
 
 
     showFieldErrors();
-    showErrorSummaryTop();
+    
 
     if(Object.keys(errors).length === 0){
-        // gameForm.submit();
-        alert('Form data valid');
+        bookForm.submit();
     }
 }

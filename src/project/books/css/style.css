@@ -89,6 +89,7 @@ h1{
 
 .filters form label {
 	font-size: 12px;
+	
 }
 
 .filters form input {
@@ -204,6 +205,7 @@ form {
 	width: 108px;
 	display: flex;
 	justify-content: flex-end;
-	color: #feeeff;
+	color: #252525;
 	font-weight: 900;
 }
+

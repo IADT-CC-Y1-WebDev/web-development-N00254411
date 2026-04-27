@@ -3,7 +3,8 @@ body {
 	font-size: 16px;
 	font-weight: 700;
 	line-height: 1.5em;
-	background-color: #593566;
+	background-image: url(../images/bookshop.jpeg);
+	background-size: cover;
 }
 h1{
 	font-family: "dm DM Serif Display" ;
@@ -18,9 +19,11 @@ h1{
 	gap: 40px 20px;
 	flex-wrap: wrap;
 }
-
+.card:hover {
+	box-shadow: 5px 4px 8px rgb(15, 0, 23);
+}
 .card {
-	background-color: #85599e;
+	background-color: #d992ff;
 	padding: 16px;
 	border-radius: 7px;
 	border: 1px solid #6e4975;
@@ -28,11 +31,6 @@ h1{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-
-}
-.card:hover{
-	box-shadow: 5px 5px 10px;
-
 }
 
 .card h2 {
@@ -41,7 +39,7 @@ h1{
 	font-family: "IBM Plex Serif";
 	margin-bottom: 12px;
 	font-weight: 700;
-	color: #e0b7ff;
+	color: #b39dc4;
 }
 
 .card p {
@@ -57,7 +55,7 @@ h1{
 
 .card .actions a {
 	font-weight: 600;
-	color: #f9ccff;
+	color: #a58da8;
 	font-size: 13px;
 	text-transform: uppercase;
 }
@@ -75,7 +73,7 @@ h1{
 }
 
 .filters {
-	background-color: #805d91;
+	background-color: #eabfff;
 	padding: 10px;
 	display: flex;
 	justify-content: flex-st;
@@ -94,7 +92,7 @@ h1{
 
 .filters form input {
 	font-size: 12px;
-	height: 30px;
+	height: 29px;
 	padding: 5px;
 }
 
@@ -108,11 +106,27 @@ h1{
 	font-size: 13px;
 	background-color: #412b4b;
 	padding: 5px 10px;
-	color: #ffb5ef;
+	color: #ececec;
 	border: 1px solid #83699b;
-	border-radius: 5px;
+	border-radius: 2px;
+	text-align: center;
+}
+.button:hover {
+	background-color: #83699b;
+	border-color: #412b4b;
+	color: #f4f4f4;
 }
 
+button.button-group1{
+	padding: 5px 10px;
+	margin: 0px 5px;
+	background-color: #cb87ff;
+}
+button.button-group2{
+	padding: 5px 10px;
+	background-color: #cb87ff;
+
+}
 .header {
 	display: flex;
 	align-items: baseline;
@@ -121,19 +135,19 @@ h1{
 
 .button {
 	font-size: 13px;
-	background-color: #412b4b;
+	background-color: #d7a3ff;
 	padding: 5px 10px;
-	color: #faeeff;
+	color: #ececec;
 	border: 1px solid #38303a;
 	border-radius: 5px;
 	display: inline-block;
 	align-items: start;
 	justify-content: start;
-	margin-right: 20px;
+	margin-right: 10px;
 }
 
 .hCard {
-	background-color: #ac86b1;
+	background-color: #f4f4f4;
 	padding: 16px;
 	border-radius: 7px;
 	border: 1px solid #533c53;
@@ -142,7 +156,9 @@ h1{
 	gap: 20px;
 	flex-direction: row;
 	justify-content: space-between;
+	
 }
+
 
 .hCard h2 {
 	font-size: 36px;
@@ -150,11 +166,12 @@ h1{
 	font-family: "IBM Plex Serif";
 	margin-bottom: 12px;
 	font-weight: 300;
-	color: #e5caff;
+	color: #a280c2;
 }
 
 .hCard p {
 	margin-bottom: 10px;
+	color: #76627f;
 }
 
 .hCard .actions {
@@ -165,7 +182,7 @@ h1{
 
 .hCard .actions a {
 	font-weight: 600;
-	color: #f5acff;
+	color: #b0acfa;
 	font-size: 13px;
 	text-transform: uppercase;
 }
@@ -192,7 +209,7 @@ form {
 
 .input {
 	display: flex;
-	gap: 20px;
+	gap: 10px;
 }
 
 .input p {
@@ -202,10 +219,32 @@ form {
 }
 
 .input label.special {
-	width: 108px;
+	width: 10px;
 	display: flex;
 	justify-content: flex-end;
-	color: #252525;
+	color: #a17dc3;
 	font-weight: 900;
 }
+.back {
+	display: flex;
+	justify-content: center;
+	background-color: #d7a3ff;
+	border: #2b1e2d solid 1px;
+	border-radius: 10px;
+	padding: 10px 90px;
+	color: #2b1e2d;
+	
+}
+.labeling {
+	margin: 10px 5px;	
+	align-items: center;
+}
 
+.background{
+	padding: 20px;
+	background-color: #e9d2ff;
+	border: #2b1e2d;
+	border-radius: 5px;
+	margin: 20px;
+	
+}

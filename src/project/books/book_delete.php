@@ -61,6 +61,7 @@ try {
     // Set success flash message
     setFlashMessage('success', 'Book deleted successfully.');
 
+
     // Redirect to book details page
     redirect('book_list.php');
 }
@@ -80,3 +81,4 @@ catch (Exception $e) {
         redirect('book_list.php');
     }
 }
+php?>

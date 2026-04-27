@@ -73,7 +73,7 @@ class ImageUpload {
 
     private function generateUniqueFilename($extension) {
         do {
-            $filename = uniqid('game_', true) . '.' . $extension;
+            $filename = uniqid('book_', true) . '.' . $extension;
             $filePath = $this->targetDir . $filename;
         } while (file_exists($filePath));
 

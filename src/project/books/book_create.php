@@ -29,8 +29,10 @@ catch (PDOException $e) {
                 <?php require 'php/inc/flash_message.php'; ?>
             </div>
             <div class="width-12">
+                
                 <h1>Create Book</h1>
             </div>
+            <div class="back">
             <div class="width-12">
                 <form id="book_form" action="book_store.php" method="POST" enctype="multipart/form-data" novalidate>
                     <div id="error_summary_top" class="error-summary" style="display:none" role="alert"></div>
@@ -114,6 +116,8 @@ catch (PDOException $e) {
                 </form>
             </div>
         </div>
+        </div>
+    
         <script src="js/form_validation.js"></script>
     </body>
 </html>
